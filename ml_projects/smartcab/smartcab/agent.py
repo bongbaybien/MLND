@@ -240,7 +240,7 @@ def run():
 ##    sim = Simulator(env, display=False)
 ##    sim = Simulator(env, update_delay=0.01, log_metrics=True, display=True)
 ##    sim = Simulator(env, update_delay=0.001, log_metrics=True, display=False)
-    sim = Simulator(env, update_delay=0.001, log_metrics=True, display=False, optimized=True)
+    sim = Simulator(env, update_delay=0.001, log_metrics=True, display=True, optimized=True)
 ##    sim = Simulator(env, update_delay=0.01, display=False)
 
     
