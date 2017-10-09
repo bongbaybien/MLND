@@ -32,17 +32,17 @@ class LinkedList(object):
         Return "None" if position is not in the list."""
         
         current = self.head
-        i = 1
+        counter = 1
+        
+        if position < 1: 
+            return None
+        
         if self.head:
-            while current.next:
-                if i==position: 
+            while current:
+                if counter==position: 
                     return current
-                i += 1
+                counter += 1
                 current = current.next
-            if i==position: 
-                return current
-            else:
-                return None
         else:
             return None
     
@@ -51,39 +51,47 @@ class LinkedList(object):
         Assume the first position is "1".
         Inserting at position 3 means between
         the 2nd and 3rd elements."""
-        previous_element = self.get_position(position-1)
-        current_element = self.get_position(position)
-        
-        previous_element.next = new_element
-        new_element.next = current_element\
-    
+                
+        if position < 1:
+            pass
+        if position == 1 and self.head:            
+            new_element.next = self.head
+            self.head = new_element
+        elif position > 1 and self.head:
+            current = self.head.next
+            previous = self.head
+            counter = 2        
+            while current:
+                if counter==position:
+                    previous.next = new_element
+                    new_element.next = current
+                    break
+                counter += 1
+                previous = current
+                current = current.next
+        else:
+            pass
+
     def delete(self, value):
         """Delete the first node with a given value."""
         current = self.head
-        i = 1
-        match = False
+        previous = None
+        
         if self.head:
-            while current.next:
-                if current.value == value: 
-                    match = True
+            while current:
+                if current.value == value:                     
+                    if previous == None:
+                        self.head = current.next
+                    else:
+                        previous.next = current.next
+                    current.next = None    
                     break
-                i += 1
-                current = current.next
-            if match == False:
-                if current.value == value:
-                    match == True
-            
-            if match == True:
-                matched_element = self.get_position(i)
-                if i==1:
-                    self.head = matched_element.next
-                else:
-                    previous_element = self.get_position(i-1)
-                    previous_element.next = self.get_position(i+1)
                 
-                matched_element.next = None    
+                previous = current
+                current = current.next                                
         else:
             pass
+
                 
             
 
