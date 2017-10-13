@@ -27,19 +27,14 @@ for city in cities:
     print city
 
 print 2
-countries = locations['Asia']
-cities = []
-city_country = {}
+asia_cities = []
+for countries, cities in locations['Asia'].items():
+    for city in cities:
+        city_country = city + " - " + countries 
+        asia_cities.append(city_country)
 
-for country in countries:
-    cities_country = locations['Asia'][country]
-    for city in cities_country:
-        # print city
-        cities.append(city)
-        city_country[city] = country
-
-for city in sorted(cities):
-    print city + ' - ' + city_country[city]
+for city in sorted(asia_cities):
+    print city
     
 
 """Print the following (using "print").
